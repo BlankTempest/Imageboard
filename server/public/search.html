@@ -1,0 +1,217 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/search.css">
+    <title>Search</title>
+
+</head>
+
+<body>
+    <center><h1>Imageboard Search</h1></center> 
+    <center><h1>`imageboard` 0 comments</h1></center>
+    <center>
+        <input type="search" size="30" maxlength="50" required>
+        &nbsp;<button type="submit">Search</button>
+    </center>
+    <hr>
+
+    <!--display none for below class if search exists, change css-->
+    <div class="noSearchResults">
+        <center><h1>No Search Results</h1></center>
+    </div>
+
+
+    <!--Inside this search results tag, we need to replace the postText innerHTML word(whatever matches the search)
+        with a span tag with bg color yellow to give it the highlighted effect-->
+    <!-- <span style="background-color:yellow;">word that matched search</span>-->
+    <div class="searchResults">
+        <div>
+            <!--first thread with the search result-->
+            <div class="OP-Post" id="1234567890">
+                <span class="OP-fileName">File: <span class="postFileName">
+                    <a href="./img/ImageTemplate.jpg">ImageTemplate.jpg</a></span>
+                </span>
+                <span class="postHeader">
+                    <span class="threadSubject">NGNL S2 Waiting Room</span>
+                    <span class="posterName">Anonymous</span>
+                    <span class="postDate">10/10/2010 10:10:10</span>
+                    <span class="postId">1234567890</span>
+                    <!--no need for replyIds-->
+                </span>
+                <div class="mainFlex">
+                    <!--img must be resizable to original size, directly edit the img tag across the page-->
+                    <div class="postImg">
+                        <img src="./img/ImageTemplate.jpg" height="150" width="240">
+                    </div>
+                    <div class="flexInsideMainReply">
+                        <div class="postText">
+                            Join us bros in our eternal wait for the second season.<br>
+                            Join us bros in our eternal wait for the second season.<br>
+                            Join us bros in our eternal wait for the second season.<br>
+                            Join us bros in our eternal wait for the second season.<br>
+                            Join us bros in our eternal wait for the second season.<br>
+                            Join us bros in our eternal wait for the second season.<br>
+                            Join us bros in our eternal wait for the second season.<br>
+                            Join us bros in our eternal wait for the second season.
+                            Join us bros in our eternal wait for the second season.
+                            Join us bros in our eternal wait for the second season.
+                            Join us bros in our eternal wait for the second season.
+                            Join us bros in our eternal wait for the second season.
+                            Join us bros in our eternal wait for the second season.
+                            Join us bros in our eternal wait for the second season.
+
+                        </div>
+                        <!--first reply with the search result-->
+                        <div class="replyPost" id="1234567892">
+                            <div class="postHeader">
+                                <div>
+                                    <span class="posterName">Anonymous</span>
+                                    <span class="postDate">10/10/2010 10:10:10</span>
+                                    <span class="postId">1234567892</span>
+                                    <!--no need for replyIds-->
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mainReply">
+                                <div class="postImg">
+                                    <div>File: <span class="postFileName"><a href="./img/ImageTemplate.jpg">ImageTemplate.jpg</a></span></div>
+                                    <img src="./img/ImageTemplate.jpg" height="110" width="170">
+                                </div>
+                                <div class="postText">
+                                    <!--href should be: threadId#postId-->
+                                    <a class="redirectPost" href="./vg/1234567890#1234567891">>>1234567891</a>  <br>
+                                    I'm waiting <span style="background-color:yellow;">with</span> you too bro
+                                </div>
+                            </div>
+                        </div>
+                        <!--second reply with the search result-->
+                        <div class="replyPost" id="1234567892">
+                            <div class="postHeader">
+                                <div>
+                                    <span class="posterName">Anonymous</span>
+                                    <span class="postDate">10/10/2010 10:10:10</span>
+                                    <span class="postId">1234567892</span>
+                                    <!--no need for replyIds-->
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mainReply">
+                                <div class="postImg">
+                                    <div>File: <span class="postFileName"><a href="./img/ImageTemplate.jpg">ImageTemplate.jpg</a></span></div>
+                                    <img src="./img/ImageTemplate.jpg" height="110" width="170">
+                                </div>
+                                <div class="postText">
+                                    <!--href should be: threadId#postId-->
+                                    <a class="redirectPost" href="./vg/1234567890#1234567891">>>1234567891</a>  <br>
+                                    I'm waiting <span style="background-color:yellow;">with</span> you too bro
+                                    Join us bros in our eternal wait for the second season.
+                                    Join us bros in our eternal wait for the second season.
+                                    Join us bros in our eternal wait for the second season.
+                                    Join us bros in our eternal wait for the second season.
+ 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- unintended short width for hr. but it looks better this way-->
+            <br>
+            <hr>
+            <br>
+
+            <!--second thread with the search result-->
+            <div class="OP-Post" id="1234567890">
+                <span class="OP-fileName">File: <span class="postFileName">
+                    <a href="./img/ImageTemplate.jpg">ImageTemplate.jpg</a></span>
+                </span>
+                <span class="postHeader">
+                    <span class="threadSubject">NGNL S2 Waiting Room</span>
+                    <span class="posterName">Anonymous</span>
+                    <span class="postDate">10/10/2010 10:10:10</span>
+                    <span class="postId">1234567890</span>
+                    <!--no need for replyIds-->
+                </span>
+                <div class="mainFlex">
+                    <!--img must be resizable to original size, directly edit the img tag across the page-->
+                    <div class="postImg">
+                        <img src="./img/ImageTemplate.jpg" height="150" width="240">
+                    </div>
+                    <div class="flexInsideMainReply">
+                        <div class="postText">
+                            Join us bros in our eternal wait for the second season.<br>
+                            Join us bros in our eternal wait for the second season.<br>
+
+                        </div>
+                        <!--first reply with the search result-->
+                        <div class="replyPost" id="1234567892">
+                            <div class="postHeader">
+                                <div>
+                                    <span class="posterName">Anonymous</span>
+                                    <span class="postDate">10/10/2010 10:10:10</span>
+                                    <span class="postId">1234567892</span>
+                                    <!--no need for replyIds-->
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mainReply">
+                                <div class="postImg">
+                                    <div>File: <span class="postFileName"><a href="./img/ImageTemplate.jpg">ImageTemplate.jpg</a></span></div>
+                                    <img src="./img/ImageTemplate.jpg" height="110" width="170">
+                                </div>
+                                <div class="postText">
+                                    <!--href should be: threadId#postId-->
+                                    <a class="redirectPost" href="./vg/1234567890#1234567891">>>1234567891</a>  <br>
+                                    I'm waiting <span style="background-color:yellow;">with</span> you too bro
+                                </div>
+                            </div>
+                        </div>
+                        <!--second reply with the search result-->
+                        <div class="replyPost" id="1234567892">
+                            <div class="postHeader">
+                                <div>
+                                    <span class="posterName">Anonymous</span>
+                                    <span class="postDate">10/10/2010 10:10:10</span>
+                                    <span class="postId">1234567892</span>
+                                    <!--no need for replyIds-->
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mainReply">
+                                <div class="postImg">
+                                </div>
+                                <div class="postText">
+                                    <!--href should be: threadId#postId-->
+                                    <a class="redirectPost" href="./vg/1234567890#1234567891">>>1234567891</a>  <br>
+                                    I'm waiting <span style="background-color:yellow;">with</span> you too bro
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+
+
+    
+        
+    </form>
+
+
+    <hr>
+    <div class="foot">
+        <span>[<a href="">Previous</a>]</span>
+        <span>
+            [
+            <a href="index.html">
+                Home
+            </a>
+            ]
+        </span>
+        <span>
+            [<a href="">Next</a>]
+        </span>
+    </div>
+</body>
