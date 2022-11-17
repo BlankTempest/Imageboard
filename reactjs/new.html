@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            display:"inline-block";
+            /* position: absolute; */
+            position:"relative";
+            border:"double";
+        }
+    </style>
+    <script crossdomain src="https://unpkg.com/react@16/umd/react.development.js"> </script> 
+    
+<!--For creating React DOM:-->
+	<script crossdomain src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"> </script> 
+	
+<!-- For Babel: -->
+	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"> </script>
+</head>
+<body bgcolor="cyan">
+    <div id="container1"></div>
+    <!--<div id="container2" style="display:inline-block;" ></div>
+    <div id="container3" style="display:inline-block;"></div>
+    <div id="container4"></div> -->
+
+    <script type="text/babel">
+    class Food extends React.Component{
+        constructor(){
+            super();
+        this.state = {form: {"pizza":"","burger":"","manchuri":""}}
+        this.myref4=React.createRef()
+        this.myref5=React.createRef()
+        }
+        render()
+        {
+            
+            var arr=[{imgname:"pizza.jpg" ,foodname:"pizza", foodprice:"250"},
+                        {imgname:"burger.jpg" ,foodname:"burger", foodprice:"200"},
+                        {imgname:"machuri.jpg" ,foodname:"manchurian", foodprice:"150"}];
+            var letterStyle={
+                    padding:"20px",
+                    margin:"20px",
+                     border:"solid", //xyz is an alias which can be delcared in render function to red ,greeen etc
+                    color:"#333",
+                    display:"inline-block",
+                };
+            return(
+                <div sytle={letterStyle}>
+                    
+                {arr.map((item,key)=>(
+                    <div style={letterStyle}>
+                    <img src={item.imgname} alt=""  style={{height:"250px",width:"250px"}}/><br/>
+                    <p>Name:{item.foodname}</p>
+                    <p>Price:{item.foodprice}</p>
+                    </div>
+                ))};
+                
+                
+                <input placeholder="QTY" style={{marginLeft:"55px"}}  name="pizza" onKeyUp={this.change} onKeyDown={this.change} onKeyPress={this.change} onInput={this.change}></input>
+                <input placeholder="QTY" style={{marginLeft:"235px"}} name="burger"  onKeyUp={this.change} onKeyDown={this.change} onKeyPress={this.change} onInput={this.change}></input>
+                <input placeholder="QTY" style={{marginLeft:"235px"}} name="manchurian"  onKeyUp={this.change} onKeyDown={this.change} onKeyPress={this.change} onInput={this.change}></input><br/><br/>
+                
+
+                <button onClick={this.Submit}>submit</button>
+              
+                
+                <div ref={this.myref4}>
+
+                    </div>
+                <div ref={this.myref5}>
+                    
+                    </div>
+                </div>
+                
+            )
+    change=(e)=>{
+        console.log("here")
+        var name=event.target.name;
+        var value=event.target.value;
+        this.setState({
+            ...this.state.form,
+            form:{
+                ...this.state.form,
+                [name]:[value]
+            }
+    })
+    }
+    Submit=()=>{
+        var a=Number(this.state.form.burger_qty)*200+Number(this.state.form.pasta_qty)*150+Number(this.state.form.pizza_qty)*300
+    this.myref4.current.innerHTML+='<b>Total: '+a+' Rupees</b><br/><br/>'+"<b>Order Summary:</b>"+'<br/><br/>'
+    this.myref5.current.innerHTML+='<b>Current Time: '+new Date().getHours()+':'+new Date().getMinutes()+'</b><br/><br/>'+
+    '<b>Delivery Time: '+(new Date().getHours()+1)+':'+new Date().getMinutes()+'</b>'}
+    
+
+    }
+    }
+    
+
+    // ReactDOM.render(<Food imgname="pizza.jpg" foodname="pizza" foodprice="250"/>,document.getElementById("container1"));
+    // ReactDOM.render(<Food imgname="burger.jpg" foodname="burger" foodprice="200"/>,document.getElementById("container2"));
+    // ReactDOM.render(<Food imgname="machuri.jpg" foodname="manchurian" foodprice="150"/>,document.getElementById("container3"));
+    // ReactDOM.render(<Bill/>,document.getElementById("container4"));
+    
+    ReactDOM.render(<Food/>,document.getElementById("container1"));
+    </script>
+</body>
+</html>

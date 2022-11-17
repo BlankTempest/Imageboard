@@ -1,0 +1,29 @@
+this gives info on sequence of flow
+render(){
+    console.log("inrender")
+}
+componentWillMount()
+{
+    console.log("willMount")
+}
+
+componentDidMount()
+{
+    console.log("didMount")
+}
+
+output is
+willMount
+inrender
+didMount
+
+shouldComponentUpdate()//when state is changed
+{
+    console.log("i am returning true")//if this returns true we can change the state
+    //to make state immutable we need to override this function-this will make sure componentWillMount
+    wont run
+}
+
+componentWillUpdate(){
+    in update
+}
