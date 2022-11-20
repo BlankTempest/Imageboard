@@ -1,0 +1,119 @@
+body{
+    font-family: 'Roboto'
+}
+html{
+    background:#eef2ff
+}
+body,div,ul,ol,h1,h2,h3,p{
+    margin:0;
+    padding:0
+}
+li{
+    list-style:none
+}
+h2{
+    font-size:120%;
+    font-weight:700
+}
+h3{
+    font-size:110%;
+    font-weight:700;
+    text-decoration: underline; 
+    display: inline;
+}
+#maindc{
+    margin:auto;
+    text-align:left;
+    width:71em;
+}
+#logo img{
+    margin:auto;
+    display:block;
+}
+.rect{
+    zoom:100%;
+    border:1.5px solid;
+    padding-bottom:1.5em;
+    margin-bottom:1.5em
+}
+.headrect{
+    background:rgb(56, 166, 218);
+    line-height:3em;
+    padding-left:1em;
+    text-align:center
+}
+#whale .content{
+    line-height:1.5em;
+    text-align:center
+}
+#rule .content{
+    line-height:1.5em;
+    text-align:center
+}
+#rule li{
+    list-style:circle;
+}
+.content{
+    padding:2em;
+    padding-bottom:0;
+    padding-top:.5em;
+    line-height:140%;
+    font-size:93%
+}
+.board{
+    font-weight:700;
+    overflow:hidden;
+    text-overflow:ellipsis
+    ;display:block;
+    white-space:nowrap;
+    margin-bottom:5px
+}
+#boards .content{
+    text-align:center
+}
+#boards .block-bread{
+    float:center;
+    width:16em
+}
+#boards .block-bread{
+    text-align:left;
+    display:inline-block;
+    vertical-align:top
+}
+#boards a{
+    color:#34345c;
+    text-decoration:none
+}
+a:visited{
+    color:blue
+}
+#boards a:hover{
+    color:rgb(58, 140, 247);
+    text-decoration:underline
+}
+.thread{
+    display:inline-block;
+    position:relative;
+    margin-top:5px;
+    padding:15px 0 15px;
+    width:175px
+}
+#threads{
+    text-align:center
+}
+.thread img{
+    border:1px solid rgb(68, 0, 255);
+    display:inline-block
+}
+.desc{
+    margin-bottom:5px;
+    padding:0 2px;
+    white-space:pre-line
+}
+#stat .content{
+    text-align:center
+}
+.horsp{
+    display:inline-block;
+    width:33%
+}
