@@ -277,12 +277,12 @@ export default class App extends React.Component {
         for(var i=0; i<this.state.data.length; i++) {
         
             console.log(typeof this.state.data[i].image)
-            var imageURL = '../uploads/'+(this.state.data[i].image).toString().split('\\')[2]
+            var imageURL = '//' + window.location.host + '/uploads/'+(this.state.data[i].image).toString().split('\\')[2]
 
             var threadsContent = `
             <div class="catalogThread">
                 <div>
-                    <img src=${imageURL} height="110" width="170"/>
+                    <a href=${imageURL}><img src=${imageURL} height="110" width="170"/></a>
                 </div>
                 <div class="catalogThreadcontents">
                     <span class="catalogReplyCount">Replies: ${this.state.data[i].replies}</span><br/>
