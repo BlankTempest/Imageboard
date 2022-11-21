@@ -7,7 +7,7 @@ export default class App extends React.Component {
     constructor()
     {
         super()
-        this.state={data:[],boardName:'',disp:0,push:0,names:'',subjects:'',comment:'',image:new Object,temps:'',posts:[],length:0}
+        this.state={data:[],boardName:'',disp:0,push:0,names:'',subjects:'',comment:'',image:null,temps:'',posts:[],length:0}
     }
 
     getBoardName=()=>{
@@ -88,7 +88,7 @@ export default class App extends React.Component {
                 const data = response.data;
                 this.setState({ posts: data});
                 console.log('Data has been received')
-                console.log(response)
+                //console.log(response)
             })
             .catch(()=> {
                 alert('Error loading page data')
@@ -102,14 +102,9 @@ export default class App extends React.Component {
             .then(response => {
                 // console.log(response.data)
                 this.setState({
-                    names: response.data[0].names,
-                    subjects: response.data[0].subjects,
-                    comment: response.data[0].comment,
-                    image: response.data[0].image,
-                    length: response.data.length,
                     data: response.data,
                 })
-                console.log(this.state.data)
+                //console.log(this.state.data)
             })
             .catch((error) => {
                 console.log(error);
@@ -128,6 +123,14 @@ export default class App extends React.Component {
 
         const submitBtn = document.getElementById('submitButton')
         submitBtn.addEventListener('click',()=>{
+            if(!this.state.comment){
+                alert("Comment body cannot be empty!")
+                return;
+            }
+            if(!this.state.image){
+                alert("All threads must be accompanied by an image!")
+                return;
+            }
             this.push();
             const postForm2 = document.getElementById("postReplyForm")
             postForm2.style.display = 'none';
@@ -245,6 +248,12 @@ export default class App extends React.Component {
 
     push= async (e)=>{
         const {disp,push,names,subjects,comment,image}=this.state;
+        //reset states
+        this.state.names = ''
+        this.state.subjects = ''
+        this.state.comment = ''
+        this.state.image = null
+        
         this.getBoardName()
         const boardName = this.state.boardName;
         const replies = 0
