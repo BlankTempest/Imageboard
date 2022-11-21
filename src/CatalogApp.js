@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
 import "./css/logem.css";
+import { type } from "@testing-library/user-event/dist/type";
 
 export default class App extends React.Component {
     constructor()
     {
         super()
-        this.state={boardName:'',disp:0,push:0,names:'',subjects:'',comment:'',image:new Object,temps:''}
+        this.state={data:[],boardName:'',disp:0,push:0,names:'',subjects:'',comment:'',image:new Object,temps:'',posts:[],length:0}
     }
 
     getBoardName=()=>{
@@ -81,8 +82,38 @@ export default class App extends React.Component {
         }
     }
 
+    getThreads = () => {
+        axios.get('/catalog')
+            .then((response) => {
+                const data = response.data;
+                this.setState({ posts: data});
+                console.log('Data has been received')
+                console.log(response)
+            })
+            .catch(()=> {
+                alert('Error loading page data')
+            })
+    }
+
     componentDidMount() {
-        axios.post('http://localhost:9001/temps',{}).then((response)=>{console.log(response)})
+        this.getBoardName()
+        const params = {boardName:this.state.boardName}
+        axios.get('/cat',{params})
+            .then(response => {
+                // console.log(response.data)
+                this.setState({
+                    names: response.data[0].names,
+                    subjects: response.data[0].subjects,
+                    comment: response.data[0].comment,
+                    image: response.data[0].image,
+                    length: response.data.length,
+                    data: response.data,
+                })
+                console.log(this.state.data)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
 
         const postForm = document.getElementById("postReplyForm")
         postForm.style.display = 'none';
@@ -102,7 +133,15 @@ export default class App extends React.Component {
             postForm2.style.display = 'none';
             const btn2 = document.getElementById('toggleReply')
             btn2.style.display = 'block';
+            this.componentDidMount()
         })
+
+        
+        this.componentDidUpdate()
+    }
+
+    componentDidUpdate() {
+        this.renderThreads();
     }
 
     render() {
@@ -174,7 +213,7 @@ export default class App extends React.Component {
     <tr data-type="File">
         <td>File</td>
         <td>
-            <input id="postFile" onChange={this.handleChange} name="sampleFile" type="file" tabindex="7"/>
+            <input id="postFile" required onChange={this.handleChange} name="sampleFile" type="file" tabindex="7"/>
             <input id="submitButton" type="submit" value="Post" tabindex="6"/>
         </td>
     </tr>
@@ -187,25 +226,8 @@ export default class App extends React.Component {
 <div class="navLinks">[<a href="/v/">Home</a>] [<a href="/v/catalog">Catalog</a>] [<a href="#bottom">Bottom</a>]</div>
 <hr/>
 
-<div class="catalogBody">
-<div class="catalogThread">
-    <div>
-        <img src="./img/ImageTemplate.jpg" height="110" width="170"/>
-    </div>
-    <div class="catalogThreadcontents">
-        <span class="catalogReplyCount">Replies: 777</span><br/>
-        <span class="catalogSubject">NGNL S2 Waiting Room + Some Long text</span>
-        :&nbsp
-        <span class="catalogText">
-            Join us bros in our eternal wait for the second season.1
-            Join us bros in our eternal wait for the second season.2
-            Join us bros in our eternal wait for the second season.3
-            Join us bros in our eternal wait for the second season.4
-        </span>
-
-    </div>
-</div>
-
+<div class="catalogBody" id="catalogBody">
+    
 </div>
 
 <hr/>
@@ -222,11 +244,11 @@ export default class App extends React.Component {
   }
 
     push= async (e)=>{
-        document.getElementById('bottom').innerHTML+=`<h1>heelo</h1>`
         const {disp,push,names,subjects,comment,image}=this.state;
         this.getBoardName()
         const boardName = this.state.boardName;
-        const new_post=new Object({boardName,names,subjects,comment,image})
+        const replies = 0
+        const new_post=new Object({boardName,names,subjects,comment,image,replies})
         // console.log(new_post)
         axios.post('/uploadMongo',new_post).then((response)=>{console.log(response.data)})
         .catch((err)=>console.log("err"))
@@ -248,4 +270,45 @@ export default class App extends React.Component {
         }
         // console.log(change,event.target.value)
     }
+
+    renderThreads=()=>{
+        var catalogBody = document.getElementById("catalogBody")
+        catalogBody.innerHTML = ''
+        for(var i=0; i<this.state.data.length; i++) {
+        
+            console.log(typeof this.state.data[i].image)
+            var imageURL = '../uploads/'+(this.state.data[i].image).toString().split('\\')[2]
+
+            var threadsContent = `
+            <div class="catalogThread">
+                <div>
+                    <img src=${imageURL} height="110" width="170"/>
+                </div>
+                <div class="catalogThreadcontents">
+                    <span class="catalogReplyCount">Replies: ${this.state.data[i].replies}</span><br/>
+                    <span class="catalogSubject">${this.state.data[i].subjects}</span>
+                    :&nbsp
+                    <span class="catalogText">
+                    ${this.state.data[i].comment}
+                    </span>
+
+                </div>
+            </div>
+            `         
+            catalogBody.insertAdjacentHTML('beforeend',threadsContent)
+        }
+    }
+
+    /*
+    print_posts=(posts,index)=>{
+        posts.map(()=>{
+            <div key={index}>
+                            <span>File:<a href={CAR}>{posts.image}</a></span><br/>
+                            <img src={CAR} style={{width:"270px",height:"200px"}}></img><br/>
+                            <div style={{width:"270px"}}>{posts.names}-{posts.comment}</div>
+                            
+            </div>
+        })
+    }
+    */
 }

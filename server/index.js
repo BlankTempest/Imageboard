@@ -4,6 +4,9 @@ const path = require("path");
 const MongoClient=require('mongodb').MongoClient
 const cors=require('cors')
 const bodyparser=require('body-parser')
+const router = require('express').Router();
+const routes = require('./routes/app');
+app.use('/',routes)
 
 multer=require('multer')
 app.use(cors())
@@ -55,7 +58,7 @@ app.post('/uploadFile', function(req, res) {
 
   sampleFile = req.files.sampleFile;
 
-  uploadPath = __dirname + '/uploads/' + sampleFile.name;
+  uploadPath = __dirname + '/public/uploads/' + sampleFile.name;
 
   sampleFile.mv(uploadPath, function(err) {
     if (err) {
@@ -66,19 +69,7 @@ app.post('/uploadFile', function(req, res) {
   });
 });
 
-app.post('http://localhost:9001/temps',async(req,res)=>{
-    // req.on('end',()=>{
-  req.on('data',(chunk)=>{
-    console.log("here")
-  })
-  req.on('end',()=>{
-    MongoClient.connect('mongodb://localhost:27017',(err,client)=>{
-      db=client.db('wt_project')
-      data = db.collection('catalogs').find().toArray()
-      res.send(data);
-    })
-  })
-})
+
 
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));

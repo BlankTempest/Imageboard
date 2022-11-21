@@ -53,45 +53,45 @@ export default class App extends React.Component {
                     <div class="block-bread">
                         <h3>Vidya</h3>
                         <ul>
-                            <li><a href="./v/">Video Games</a></li>
-                            <li><a href="./vm/">Multiplayer</a></li>
-                            <li><a href="./vmmo/">MMORPG</a></li>
-                            <li><a href="./vr/">Virtual Reality</a></li>
+                            <li><a href="./v/catalog/">Video Games</a></li>
+                            <li><a href="./vm/catalog/">Multiplayer</a></li>
+                            <li><a href="./vmmo/catalog/">MMORPG</a></li>
+                            <li><a href="./vr/catalog/">Virtual Reality</a></li>
                         </ul>
 
                         <br/>
 
                         <h3>Weebland</h3>
                         <ul>
-                            <li><a href="./a/">Anime</a></li>
-                            <li><a href="./m/">Manga</a></li>
-                            <li><a href="./ln/">Light Novels</a></li>
-                            <li><a href="./jp/">Japan</a></li>
-                            <li><a href="./vt/">VTubers</a></li>
+                            <li><a href="./a/catalog/">Anime</a></li>
+                            <li><a href="./m/catalog/">Manga</a></li>
+                            <li><a href="./ln/catalog/">Light Novels</a></li>
+                            <li><a href="./jp/catalog/">Japan</a></li>
+                            <li><a href="./vt/catalog/">VTubers</a></li>
                         </ul>
                     </div>
 
                     <div class="block-bread">
                         <h3>Hobbies</h3>
                         <ul>
-                            <li><a href="./pg/">Programming</a></li>
-                            <li><a href="./ca/">Cars</a></li>
-                            <li><a href="./mv/">Movies</a></li>
-                            <li><a href="./tv/">TV Shows</a></li>
-                            <li><a href="./sp/">Sports</a></li>
-                            <li><a href="./ma/">Math</a></li>
-                            <li><a href="./sci/">Science</a></li>
-                            <li><a href="./co/">Comics</a></li>
+                            <li><a href="./pg/catalog/">Programming</a></li>
+                            <li><a href="./ca/catalog/">Cars</a></li>
+                            <li><a href="./mv/catalog/">Movies</a></li>
+                            <li><a href="./tv/catalog/">TV Shows</a></li>
+                            <li><a href="./sp/catalog/">Sports</a></li>
+                            <li><a href="./ma/catalog/">Math</a></li>
+                            <li><a href="./sci/catalog/">Science</a></li>
+                            <li><a href="./co/catalog/">Comics</a></li>
                         </ul>
                     </div>
 
                     <div class="block-bread">
                     <h3>Misc</h3>
                         <ul>
-                            <li><a href="./gd/">Game Development</a></li>
-                            <li><a href="./mu/">Music</a></li>
-                            <li><a href="./p/">Photography</a></li>
-                            <li><a href="./lit/">Literature</a></li>
+                            <li><a href="./gd/catalog/">Game Development</a></li>
+                            <li><a href="./mu/catalog/">Music</a></li>
+                            <li><a href="./p/catalog/">Photography</a></li>
+                            <li><a href="./lit/catalog/">Literature</a></li>
                         </ul>
                     </div>
                     <br/>
