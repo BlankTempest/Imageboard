@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import "./css/spreadem.css";
 
-export default class App extends React.Component {
+
+export default class HomeApp extends React.Component {
   state = {
     users: [],
   };
@@ -13,7 +13,12 @@ export default class App extends React.Component {
   }
 
   render() {
+    import ("./css/spreadem.css")
+
     const { users } = this.state;
+
+    document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="./css/spreadem.css">'
+
     return (
     <div id="maindc">
         <div id="logo">

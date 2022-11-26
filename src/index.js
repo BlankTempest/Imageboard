@@ -74,7 +74,7 @@ else if(url.split('/')[2] && url.split('/')[2].toLowerCase() == "catalog") {
             ReactDOM.render(<CatalogApp />, document.getElementById("root"));
 }
 
-else if(url.split('/')[1].toLowerCase() == 'thread')
+else if(url.split('/')[2].toLowerCase() == 'thread')
 	ReactDOM.render(<ThreadApp />, document.getElementById("root"));
 
 //else render 404

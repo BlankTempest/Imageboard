@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import "./css/logem.css";
 
-export default class App extends React.Component {
+
+export default class CatalogApp extends React.Component {
     constructor()
     {
         super()
@@ -215,7 +215,7 @@ export default class App extends React.Component {
             postForm2.style.display = 'none';
             const btn2 = document.getElementById('toggleReply')
             btn2.style.display = 'block';
-            this.componentDidMount()
+            this.componentDidUpdate()
         })
 
         
@@ -227,6 +227,8 @@ export default class App extends React.Component {
     }
 
     render() {
+        import ("./css/logem.css");
+
         this.getBoardName()
 
         var url_temp = window.location.pathname
@@ -309,7 +311,7 @@ export default class App extends React.Component {
 
 
 <hr/>
-<div class="navLinks">[<a href="../">Home</a>] [<a href="./catalog">Catalog</a>] [<a href="#bottom">Bottom</a>]</div>
+<div class="navLinks">[<a href="../">Home</a>] [<a href={catalogURL}>Catalog</a>] [<a href="#bottom">Bottom</a>]</div>
 <hr/>
 
 <div class="catalogBody" id="catalogBody">
@@ -318,7 +320,7 @@ export default class App extends React.Component {
 
 <hr/>
 
-<div class="navLinks">[<a href="../" accesskey="a">Home</a>] [<a href="./catalog">Catalog</a>] [<a href="#top">Top</a>] </div>
+<div class="navLinks">[<a href="../" accesskey="a">Home</a>] [<a href={catalogURL}>Catalog</a>] [<a href="#top">Top</a>] </div>
 
 <hr class="desktop"/>
 
@@ -377,8 +379,8 @@ export default class App extends React.Component {
         for(var i=0; i<this.state.data.length; i++) {
         
             //console.log(typeof this.state.data[i].image)
-            var imageURL = '//' + window.location.host + '/uploads/'+(this.state.data[i].image).toString().replace(' ','%20').split('\\')[2]
-            imageURL.replace(' ','%20')
+            var imageURL = '//' + window.location.host + '/uploads/'+(this.state.data[i].image).toString().replaceAll(' ','%20').split('\\')[2]
+            imageURL.replaceAll(' ','%20')
 
             var img = new Image();
             var height
@@ -393,8 +395,9 @@ export default class App extends React.Component {
 
             var imgw = 110/height*width
             imgw = imgw.toString()
-
-            var threadURL = '//' + window.location.host + '/thread/'+(this.state.data[i].threadID)
+            
+            var url = window.location.pathname
+            var threadURL = '//' + window.location.host + '/' +url.split('/')[1].toLowerCase() +'/thread/'+(this.state.data[i].threadID)
 
             var threadsContent = `
             <div class="catalogThread">

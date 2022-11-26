@@ -4153,7 +4153,7 @@
   dependencies:
     "postcss-selector-parser" "^6.0.9"
 
-"css-loader@^6.5.1":
+"css-loader@^6.5.1", "css-loader@^6.7.2":
   "integrity" "sha512-oqGbbVcBJkm8QwmnNzrFrWTnudnRZC+1eXikLJl0n4ljcfotgRifpg2a1lKy8jTrc4/d9A/ap1GFq1jDKG7J+Q=="
   "resolved" "https://registry.npmjs.org/css-loader/-/css-loader-6.7.2.tgz"
   "version" "6.7.2"
