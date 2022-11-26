@@ -309,7 +309,7 @@ export default class App extends React.Component {
 
 
 <hr/>
-<div class="navLinks">[<a href="../">Home</a>] [<a href="${catalogURL}">Catalog</a>] [<a href="#bottom">Bottom</a>]</div>
+<div class="navLinks">[<a href="../">Home</a>] [<a href="./catalog">Catalog</a>] [<a href="#bottom">Bottom</a>]</div>
 <hr/>
 
 <div class="catalogBody" id="catalogBody">
@@ -318,7 +318,7 @@ export default class App extends React.Component {
 
 <hr/>
 
-<div class="navLinks">[<a href="../" accesskey="a">Home</a>] [<a href="${catalogURL}">Catalog</a>] [<a href="#top">Top</a>] </div>
+<div class="navLinks">[<a href="../" accesskey="a">Home</a>] [<a href="./catalog">Catalog</a>] [<a href="#top">Top</a>] </div>
 
 <hr class="desktop"/>
 

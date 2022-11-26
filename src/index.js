@@ -3,6 +3,12 @@ import ReactDOM from "react-dom";
 import HomeApp from "./HomeApp";
 import CatalogApp from "./CatalogApp";
 import Error404 from "./Error404";
+import ThreadApp from "./ThreadApp";
+
+
+//ReactDOM.render(<RenderApp />, document.getElementById("root"));  
+//tried rendering renderapp instead of everything below
+
 
 var url = window.location.pathname
 var valid = true
@@ -10,9 +16,9 @@ var valid = true
 if(url.length == 1 && url == "/"){
     ReactDOM.render(<HomeApp />, document.getElementById("root"));
 }
-else if(url.split('/')[2].toLowerCase() == "catalog") {
+else if(url.split('/')[2] && url.split('/')[2].toLowerCase() == "catalog") {
 
-    //if url is empty then it tried to send an empty object to mongodb
+    //if url is empty then it tries to send an empty object to mongodb
     //if url doens't match then it's better to render 404 before the catalogapp render
     
     var url = window.location.pathname
@@ -67,9 +73,13 @@ else if(url.split('/')[2].toLowerCase() == "catalog") {
         if(valid)
             ReactDOM.render(<CatalogApp />, document.getElementById("root"));
 }
+
+else if(url.split('/')[1].toLowerCase() == 'thread')
+	ReactDOM.render(<ThreadApp />, document.getElementById("root"));
+
 //else render 404
 else 
     ReactDOM.render(<Error404 />, document.getElementById("root"));
-    
+
 if(!valid)
     ReactDOM.render(<Error404 />, document.getElementById("root"));

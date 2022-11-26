@@ -8,6 +8,8 @@ const router = require('express').Router();
 const routes = require('./routes/app');
 app.use('/',routes)
 
+const mongourl = "mongodb+srv://webtech_projection:webtech_projection@cluster0.1ryk5ub.mongodb.net/?retryWrites=true&w=majority"
+
 multer=require('multer')
 app.use(cors())
 urlencodedparser=bodyparser.urlencoded({extended:true})
@@ -29,7 +31,7 @@ app.post('/uploadMongo',async(req,res)=>{
   req.on('end',()=>{
       // console.log(body)
       console.log(JSON.parse(body.toString()));
-      MongoClient.connect('mongodb://localhost:27017',(err,client)=>{
+      MongoClient.connect(mongourl,(err,client)=>{
       db=client.db('catalogs')
       console.log('pushing a new thread to')
       console.log(JSON.parse(body).boardName)

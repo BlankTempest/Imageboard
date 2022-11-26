@@ -2,7 +2,7 @@ import React from "react";
 import axios from 'axios';
 import './css/threadem.css'
 import e from "cors";
-export class Thread extends React.Component
+export default class Thread extends React.Component
 {
     constructor(){
         super()

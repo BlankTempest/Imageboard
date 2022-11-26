@@ -2,9 +2,10 @@ var express=require('express')
 routes=express.Router()
 var MongoClient= require('mongodb').MongoClient
 
+const mongourl = "mongodb+srv://webtech_projection:webtech_projection@cluster0.1ryk5ub.mongodb.net/?retryWrites=true&w=majority"
 
 routes.get('/cat',(req,res)=>{
-    MongoClient.connect('mongodb://localhost:27017',(err,client)=>{
+    MongoClient.connect(mongourl,(err,client)=>{
         if(err) console.log(err)
         else
         {
