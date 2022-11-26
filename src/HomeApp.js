@@ -17,17 +17,17 @@ export default class App extends React.Component {
     return (
     <div id="maindc">
         <div id="logo">
-            <a href="./index.html"><img src="./img/logoTemplate.png" width="400" height="150"/></a>
+            <a href="../"><img src="./img/logoTemplate.png" width="400" height="150"/></a>
         </div>
         <div>
             <div class="rect" id="whale">
                 <div class="headrect">
-                    <h2>Whale cum to our Imageboard!</h2>
+                    <h2>Welcome to our Imageboard!</h2>
                 </div>
                 <div class="content">
-                    <p>Imageboard name is still pending but here's some wall of text to fill tis p tag up. Don't pay this any heed.</p><br/>
                     <p>An imageboard is a type of Internet forum that focuses on the posting of images, often alongside text and discussion.</p><br/>
-                    <p>Imageboards, similar to bulletin board systems, are used for discussions of a variety of topics</p>
+                    <p>Imageboards, similar to bulletin board systems, are used for discussions of a variety of topics</p><br/>
+                    <p>Our Imageboard has a wide variety of boards for you to have discussions in.</p>
                 </div>
             </div>
             <div class="rect" id="rule">
@@ -39,8 +39,6 @@ export default class App extends React.Component {
                         <li>You may not use this site unless you are above the age of 18</li><br/>
                         <li>You may not post content that is considered nsfw</li><br/>
                         <li>Do not post personal information or try to expose other users' anonymity</li><br/>
-                        <li>Abuse the report system will result in a ban</li><br/>
-                        <li>Trying to evade a ban will instead result in a permanent one</li><br/>
                         <li>Spamming or embedding external sites is not allowed</li>
                     </ul>
                 </div>

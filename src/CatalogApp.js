@@ -1,13 +1,12 @@
 import React from "react";
 import axios from "axios";
 import "./css/logem.css";
-import { type } from "@testing-library/user-event/dist/type";
 
 export default class App extends React.Component {
     constructor()
     {
         super()
-        this.state={data:[],boardName:'',disp:0,push:0,names:'',subjects:'',comment:'',image:null,temps:'',posts:[],length:0}
+        this.state={data:[],boardName:'',names:'',subjects:'',comment:'',image:null,temps:'',posts:[],length:0}
     }
 
     getBoardName=()=>{
@@ -78,9 +77,89 @@ export default class App extends React.Component {
                 break;
             default:
                 //url doesn't match, 404
+
                 break;
         }
     }
+    /*
+    getBoardName=()=>{
+        var url = window.location.pathname
+        switch(url.split('/')[1].toLowerCase()){
+            case "a": 
+                this.setState({ boardName: "/a/ - Anime"});
+                break;
+            case "ca": 
+                this.setState({ boardName: "/ca/ - Cars"});
+                break;
+            case "co": 
+                this.setState({ boardName: "/co/ - Comics"});
+                break;
+            case "gd": 
+                this.setState({ boardName: "/gd/ - Game Development"});
+                break;
+            case "jp": 
+                this.setState({ boardName: "/jp/ - Japan"});
+                break;
+            case "lit": 
+                this.setState({ boardName: "/lit/ - Literature"});
+                break;
+            case "ln": 
+                this.setState({ boardName: "/ln/ - Light Novels"});
+                break;
+            case "m": 
+                this.setState({ boardName: "/m/ - Manga"});
+                break;
+            case "ma": 
+                this.setState({ boardName: "/ma/ - Math"});
+                break;
+            case "mu": 
+                this.setState({ boardName: "/mu/ - Music"});
+                break;
+            case "mv": 
+                this.setState({ boardName: "/mv/ - Movies"});
+                break;
+            case "p": 
+                this.setState({ boardName: "/p/ - Photography"});
+                break;
+            case "pg": 
+                this.setState({ boardName: "/pg/ - Programming"});
+                break;
+            case "sci": 
+                this.setState({ boardName: "/sci/ - Science"});
+                break;
+            case "sp": 
+                this.setState({ boardName: "/sp/ - Sports"});
+                break;
+            case "tv": 
+                this.setState({ boardName: "/tv/ - TV Shows"});
+                break;
+            case "v": 
+                this.setState({ boardName: "/v/ - Video Games"});
+                break;
+            case "vm": 
+                this.setState({ boardName: "/vm/ - Multiplayer"});
+                break;
+            case "vmmo": 
+                this.setState({ boardName: "/vmmo/ - MMORPG"});
+                break;
+            case "vr": 
+                this.setState({ boardName: "/vr/ - Virtual Reality"});
+                break;
+            case "vt": 
+                this.setState({ boardName: "/vt/ - VTubers"});
+                break;
+            default:
+                //url doesn't match, 404
+                var Body = document.getElementsByTagName("body")
+                Body.innerHTML = `<div>
+                                    <center>
+                                        <h2>404 Page not found</h2>
+                                    </center>
+                                </div>`
+                break;
+        }
+    }
+    */
 
     getThreads = () => {
         axios.get('/catalog')
@@ -149,6 +228,10 @@ export default class App extends React.Component {
 
     render() {
         this.getBoardName()
+
+        var url_temp = window.location.pathname
+        var catalogURL = '//' + window.location.host + '/' + url_temp.split('/')[1].toLowerCase() + '/catalog'
+        //console.log(catalogURL)
         return (
     
 <div>
@@ -226,7 +309,7 @@ export default class App extends React.Component {
 
 
 <hr/>
-<div class="navLinks">[<a href="/v/">Home</a>] [<a href="/v/catalog">Catalog</a>] [<a href="#bottom">Bottom</a>]</div>
+<div class="navLinks">[<a href="../">Home</a>] [<a href="${catalogURL}">Catalog</a>] [<a href="#bottom">Bottom</a>]</div>
 <hr/>
 
 <div class="catalogBody" id="catalogBody">
@@ -235,7 +318,7 @@ export default class App extends React.Component {
 
 <hr/>
 
-<div class="navLinks">[<a href="/v/" accesskey="a">Home</a>] [<a href="/v/catalog">Catalog</a>] [<a href="#top">Top</a>] </div>
+<div class="navLinks">[<a href="../" accesskey="a">Home</a>] [<a href="${catalogURL}">Catalog</a>] [<a href="#top">Top</a>] </div>
 
 <hr class="desktop"/>
 
@@ -247,17 +330,23 @@ export default class App extends React.Component {
   }
 
     push= async (e)=>{
-        const {disp,push,names,subjects,comment,image}=this.state;
+        const {names,subjects,comment,image}=this.state;
         //reset states
-        this.state.names = ''
-        this.state.subjects = ''
-        this.state.comment = ''
-        this.state.image = null
+        this.setState({names:''});
+        this.setState({subjects:''});
+        this.setState({comment:''});
+        this.setState({image:null});
         
         this.getBoardName()
         const boardName = this.state.boardName;
         const replies = 0
-        const new_post=new Object({boardName,names,subjects,comment,image,replies})
+        const postReplies =[]
+        var postcount = 0
+        for(var i = 0; i < this.state.data.length; i++) {
+            postcount+=this.state.data[i].postReplies.length
+        }
+        const threadID = this.state.data.length + 1000 + postcount
+        const new_post=new Object({boardName,names,subjects,comment,image,replies,postReplies,threadID})
         // console.log(new_post)
         axios.post('/uploadMongo',new_post).then((response)=>{console.log(response.data)})
         .catch((err)=>console.log("err"))
@@ -276,6 +365,8 @@ export default class App extends React.Component {
             break;
             case 'sampleFile':this.setState({image:event.target.value});
             break;
+            default:
+            break;
         }
         // console.log(change,event.target.value)
     }
@@ -285,13 +376,30 @@ export default class App extends React.Component {
         catalogBody.innerHTML = ''
         for(var i=0; i<this.state.data.length; i++) {
         
-            console.log(typeof this.state.data[i].image)
-            var imageURL = '//' + window.location.host + '/uploads/'+(this.state.data[i].image).toString().split('\\')[2]
+            //console.log(typeof this.state.data[i].image)
+            var imageURL = '//' + window.location.host + '/uploads/'+(this.state.data[i].image).toString().replace(' ','%20').split('\\')[2]
+            imageURL.replace(' ','%20')
+
+            var img = new Image();
+            var height
+            var width
+
+            img.onload = function(){
+            height = img.height;
+            width = img.width;
+            }
+
+            img.src = imageURL;
+
+            var imgw = 110/height*width
+            imgw = imgw.toString()
+
+            var threadURL = '//' + window.location.host + '/thread/'+(this.state.data[i].threadID)
 
             var threadsContent = `
             <div class="catalogThread">
                 <div>
-                    <a href=${imageURL}><img src=${imageURL} height="110" width="170"/></a>
+                    <a href=${threadURL}><img src=${imageURL} height="110" width=${imgw}/></a>
                 </div>
                 <div class="catalogThreadcontents">
                     <span class="catalogReplyCount">Replies: ${this.state.data[i].replies}</span><br/>
