@@ -377,6 +377,11 @@ export default class ThreadApp extends React.Component {
             else 
                 posterName = 'Anonymous'
 
+        /*<a href="#1234567895">&gt;&gt;1234567895</a>
+        <a href="#1234567896">&gt;&gt;1234567896</a>*/
+
+          var date = new Date(this.state.data[threadIndex].post_date)
+
         var OpPost = `
         <div class="OP-Post" id=${threadID_temp}>
             <span class="OP-fileName">File: <span class="postFileName">
@@ -385,14 +390,10 @@ export default class ThreadApp extends React.Component {
             <span class="postHeader">
                 <span class="threadSubject">${this.state.data[threadIndex].subjects}</span>
                 <span class="posterName">${posterName}</span>
-                <span class="postDate">10/10/2010 10:10:10</span>
-                <span class="postId">${threadID_temp}</span>
+                <span class="postDate">${date.toDateString()}</span>
+                <span class="postId"> | ${threadID_temp}</span>
                 <span class="replyIds">
                     ▶
-                    <a href="#1234567891">&gt;&gt;1234567891</a>
-                    <a href="#1234567892">&gt;&gt;1234567892</a>
-                    <a href="#1234567893">&gt;&gt;1234567893</a>
-                    <a href="#1234567894">&gt;&gt;1234567894</a>
                 </span>
             </span>
             <div class="mainFlex">
@@ -444,18 +445,16 @@ export default class ThreadApp extends React.Component {
 
             var fileName = (this.state.data[threadIndex].postReplies[i].image).toString().replaceAll(' ','%20').split('\\')[2]
             
-            
+            date = new Date(this.state.data[threadIndex].postReplies[i].post_date)
 
             var postWithImage = `
             <div class="replyPost" id=${this.state.data[threadIndex].postReplies[i].postID}>
                 <div class="postHeader">
                     <span class="posterName">${posterName}</span>
-                    <span class="postDate">10/10/2010 10:10:10</span>
-                    <span class="postId">${this.state.data[threadIndex].postReplies[i].postID}</span>
+                    <span class="postDate">${date.toDateString()}</span>
+                    <span class="postId"> | ${this.state.data[threadIndex].postReplies[i].postID}</span>
                     <span class="replyIds">
                         ▶
-                        <a href="#1234567895">&gt;&gt;1234567895</a>
-                        <a href="#1234567896">&gt;&gt;1234567896</a>
                     </span>
                 </div>
                 <div class="mainReply">
@@ -478,8 +477,8 @@ export default class ThreadApp extends React.Component {
                 <div class="postHeader">
                     <div>
                         <span class="posterName">${posterName}</span>
-                        <span class="postDate">10/10/2010 10:10:10</span>
-                        <span class="postId">${this.state.data[threadIndex].postReplies[i].postID}</span>
+                        <span class="postDate">${date.toDateString()}</span>
+                        <span class="postId"> | ${this.state.data[threadIndex].postReplies[i].postID}</span>
         
                         <span class="replyIds">
                         </span>

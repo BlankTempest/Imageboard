@@ -347,8 +347,9 @@ export default class CatalogApp extends React.Component {
         for(var i = 0; i < this.state.data.length; i++) {
             postcount+=this.state.data[i].postReplies.length
         }
+        const post_date=new Date()
         const threadID = this.state.data.length + 1000 + postcount
-        const new_post=new Object({boardName,names,subjects,comment,image,replies,postReplies,threadID})
+        const new_post=new Object({boardName,names,subjects,comment,image,post_date,replies,postReplies,threadID})
         // console.log(new_post)
         axios.post('/uploadMongo',new_post).then((response)=>{console.log(response.data)})
         .catch((err)=>console.log("err"))
